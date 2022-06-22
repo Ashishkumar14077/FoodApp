@@ -1,0 +1,26 @@
+{
+  "name": "foodapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashishkumar14077/FoodApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ashishkumar14077/FoodApp/issues"
+  },
+  "homepage": "https://github.com/Ashishkumar14077/FoodApp#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mogoose": "^0.0.1-security"
+  }
+}
