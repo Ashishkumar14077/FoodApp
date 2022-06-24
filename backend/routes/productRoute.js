@@ -4,6 +4,7 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductDetails,
 } = require("../controllers/productController");
 const router = expres.Router();
 
@@ -16,6 +17,10 @@ router.route("/products").get(getAllProducts);
 router.route("/products/new").post(createProduct);
 
 //to update/delete an existing product (only as admin)
-router.route("/product/:id").put(updateProduct).delete(deleteProduct);
+router
+  .route("/product/:id")
+  .put(updateProduct)
+  .delete(deleteProduct)
+  .get(getProductDetails);
 
 module.exports = router;
