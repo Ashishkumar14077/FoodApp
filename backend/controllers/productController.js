@@ -1,6 +1,7 @@
 const Product = require("../models/productModel");
 const ErrorHandler = require("../utils/errorhandler");
 const cathcAsyncErrors = require("../middleware/catchAsyncErrors");
+const ApiFeatures = require("../utils/apifeatures");
 
 //create Product -- admin only
 exports.createProduct = cathcAsyncErrors(async (req, res, next) => {
@@ -13,7 +14,20 @@ exports.createProduct = cathcAsyncErrors(async (req, res, next) => {
 
 //Get all produucts from database
 exports.getAllProducts = cathcAsyncErrors(async (req, res) => {
-  const products = await Product.find();
+  //no. of produxt required per page
+  const resultPerPage = 3;
+
+  //to show
+  const productsCount = await Product.countDocuments();
+  //for searching or soomething
+  // like keyword = mango
+  const ApiFeature = new ApiFeatures(Product.find(), req.query)
+    .search()
+    //case sensitive
+    .filter()
+    .pagination(resultPerPage);
+  const products = await ApiFeature.query;
+
   res.status(200).json({ success: true, products });
 });
 
@@ -29,6 +43,7 @@ exports.getProductDetails = cathcAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     product,
+    resultPerPage,
   });
 });
 
